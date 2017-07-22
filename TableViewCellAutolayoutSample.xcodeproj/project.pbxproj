@@ -122,6 +122,8 @@
 				TargetAttributes = {
 					418C881B1C61FC590040B505 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = REU929A8B2;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -279,10 +281,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = REU929A8B2;
 				INFOPLIST_FILE = TableViewCellAutolayoutSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yo.11.06.yo.TableViewCellAutolayoutSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -290,10 +294,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = REU929A8B2;
 				INFOPLIST_FILE = TableViewCellAutolayoutSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yo.11.06.yo.TableViewCellAutolayoutSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

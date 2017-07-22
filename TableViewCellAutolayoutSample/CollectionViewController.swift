@@ -10,9 +10,9 @@ import UIKit
 
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    private let kDataCount = 100
-    private let kColumnCount = 1
-    private let kMargin: CGFloat = 5
+    fileprivate let kDataCount = 100
+    fileprivate let kColumnCount = 1
+    fileprivate let kMargin: CGFloat = 5
     
     var cellSizeCache: CGSize?
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,24 +20,24 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.registerNib(BaseCollectionViewCell.nib(), forCellWithReuseIdentifier: BaseCollectionViewCell.reuseIdentifier())
+        collectionView.register(BaseCollectionViewCell.nib(), forCellWithReuseIdentifier: BaseCollectionViewCell.reuseIdentifier())
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return kDataCount * kColumnCount
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(BaseCollectionViewCell.reuseIdentifier(), forIndexPath: indexPath)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BaseCollectionViewCell.reuseIdentifier(), for: indexPath)
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         // ???: リロードのたびにインスタンス化してしまうのでキャッシュしてる
         guard let _cellSizeCache = cellSizeCache else {
-            guard let cell = BaseCollectionViewCell.nib().instantiateWithOwner(self, options: nil).first as? BaseCollectionViewCell else {
-                return CGSizeZero
+            guard let cell = BaseCollectionViewCell.nib().instantiate(withOwner: self, options: nil).first as? BaseCollectionViewCell else {
+                return CGSize.zero
             }
             cellSizeCache = cell.calcCellSize(cellWidth())
             return cellSizeCache!
@@ -47,29 +47,29 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         return _cellSizeCache
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: kMargin, left: kMargin, bottom: kMargin, right: kMargin)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return kMargin
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return kMargin
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSizeZero
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize.zero
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSizeZero
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize.zero
     }
     
-    private func cellWidth() -> CGFloat {
+    fileprivate func cellWidth() -> CGFloat {
         let marginSum = kMargin * CGFloat(kColumnCount + 1)
         
-        return floor((UIScreen.mainScreen().bounds.width  - marginSum) / CGFloat(kColumnCount))
+        return floor((UIScreen.main.bounds.width  - marginSum) / CGFloat(kColumnCount))
     }
 }

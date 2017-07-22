@@ -16,14 +16,14 @@ class BaseCollectionViewCell: UICollectionViewCell {
     }
     
     class func className() -> String {
-        return NSStringFromClass(self).componentsSeparatedByString(".")[1]
+        return NSStringFromClass(self).components(separatedBy: ".")[1]
     }
     
     class func nib() -> UINib {
         return UINib(nibName: className(), bundle: nil)
     }
     
-    func calcCellSize(width: CGFloat) -> CGSize {
+    func calcCellSize(_ width: CGFloat) -> CGSize {
         var newFrame = frame
         newFrame.size.width = width
         frame = newFrame
